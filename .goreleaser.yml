@@ -1,0 +1,65 @@
+version: 2
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+builds:
+-
+  id: envdo-linux
+  env:
+    - CGO_ENABLED=0
+  goos:
+    - linux
+  goarch:
+    - amd64
+    - arm64
+  ldflags:
+    - -s -w -X github.com/k1LoW/envdo.version={{.Version}} -X github.com/k1LoW/envdo.commit={{.FullCommit}} -X github.com/k1LoW/envdo.date={{.Date}} -X github.com/k1LoW/envdo/version.Version={{.Version}}
+-
+  id: envdo-darwin
+  env:
+    - CGO_ENABLED=0
+  goos:
+    - darwin
+  goarch:
+    - amd64
+    - arm64
+  ldflags:
+    - -s -w -X github.com/k1LoW/envdo.version={{.Version}} -X github.com/k1LoW/envdo.commit={{.FullCommit}} -X github.com/k1LoW/envdo.date={{.Date}} -X github.com/k1LoW/envdo/version.Version={{.Version}}
+archives:
+-
+  id: envdo-archive
+  name_template: '{{ .ProjectName }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  format_overrides:
+    - goos: darwin
+      format: zip
+  files:
+    - LICENSE
+    - CREDITS
+    - README.md
+    - CHANGELOG.md
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Version }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+nfpms:
+  -
+    id: envdo-nfpms
+    file_name_template: "{{ .ProjectName }}_{{ .Version }}-1_{{ .Arch }}"
+    builds:
+    - envdo-linux
+    homepage: https://github.com/k1LoW/envdo
+    maintainer: Ken'ichiro Oyama <k1lowxb@gmail.com>
+    description: Execute commands with environment variables from .env files.
+    license: MIT
+    formats:
+      - deb
+      - rpm
+    bindir: /usr/bin
+    epoch: 1

@@ -1,0 +1,6 @@
+envdo
+coverage.out
+!.golangci.yml
+!.goreleaser.yml
+!.gostyle.yml
+.DS_Store
