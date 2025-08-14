@@ -10,18 +10,6 @@ Execute commands with environment variables from .env files.
 - Execute any command with loaded environment variables
 - Display loaded environment variables in export format
 
-## Install
-
-### go install
-
-```console
-$ go install github.com/k1LoW/envdo@latest
-```
-
-### Binary releases
-
-Download from [releases page](https://github.com/k1LoW/envdo/releases).
-
 ## Usage
 
 ### Basic usage
@@ -71,4 +59,37 @@ When using the `--profile` option, envdo looks for `.env.{profile}` files:
 ```console
 $ envdo --profile production -- node app.js
 # Loads .env.production
+```
+
+## Install
+
+**homebrew tap:**
+
+```console
+$ brew install k1LoW/tap/envdo
+```
+
+**manually:**
+
+Download binary from [releases page](https://github.com/k1LoW/envdo/releases)
+
+**go install:**
+
+```console
+$ go install github.com/k1LoW/envdo@latest
+```
+
+**deb:**
+
+``` console
+$ export ENVDO_VERSION=X.X.X
+$ curl -o envdo.deb -L https://github.com/k1LoW/envdo/releases/download/v$ENVDO_VERSION/envdo_$ENVDO_VERSION-1_amd64.deb
+$ dpkg -i envdo.deb
+```
+
+**RPM:**
+
+``` console
+$ export ENVDO_VERSION=X.X.X
+$ yum install https://github.com/k1LoW/envdo/releases/download/v$ENVDO_VERSION/envdo_$ENVDO_VERSION-1_amd64.rpm
 ```
