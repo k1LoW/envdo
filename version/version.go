@@ -4,4 +4,4 @@ package version
 const Name string = "envdo"
 
 // Version for this.
-var Version = "0.0.1"
+var Version = "0.1.0"
