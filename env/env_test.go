@@ -167,10 +167,10 @@ KEY3=value3
 		wantError   bool
 		setupEnv    map[string]string
 	}{
-		name:      "loadEnvFile with non-existent file - should not error",
+		name:      "profile specified but file not found - should error",
 		profile:   "nonexistent",
-		wantEnvs:  map[string]string{},
-		wantError: false,
+		wantEnvs:  nil,
+		wantError: true,
 	})
 
 	for _, tt := range tests {
