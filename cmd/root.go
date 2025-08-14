@@ -26,10 +26,9 @@ import (
 	"fmt"
 	"os"
 
-	"os/exec"
-
 	"github.com/k1LoW/envdo/env"
 	"github.com/k1LoW/envdo/version"
+	"github.com/k1LoW/exec"
 	"github.com/spf13/cobra"
 )
 
