@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 )
 
@@ -36,9 +37,25 @@ func (e *Env) LoadEnvFiles(profile string) (map[string]string, error) {
 	// Get directories to search
 	dirs := e.getSearchDirectories()
 
+	// Check if any file exists when profile is specified
+	if profile != "" {
+		fileFound := false
+		for _, dir := range dirs {
+			envPath := filepath.Join(dir, filename)
+			if _, err := os.Stat(envPath); err == nil {
+				fileFound = true
+				break
+			}
+		}
+		if !fileFound {
+			return nil, fmt.Errorf("environment file %s not found in any search directory", filename)
+		}
+	}
+
 	// Load from directories in reverse order (lower priority first)
-	for i := len(dirs) - 1; i >= 0; i-- {
-		envPath := filepath.Join(dirs[i], filename)
+	slices.Reverse(dirs)
+	for _, dir := range dirs {
+		envPath := filepath.Join(dir, filename)
 		if _, err := os.Stat(envPath); err == nil {
 			if err := loadEnvFile(envPath, envs); err != nil {
 				return nil, fmt.Errorf("failed to load %s: %w", envPath, err)
