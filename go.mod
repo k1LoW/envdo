@@ -3,7 +3,7 @@ module github.com/k1LoW/envdo
 go 1.24.6
 
 require (
-	github.com/k1LoW/exec v0.3.0
+	github.com/k1LoW/exec v0.4.0
 	github.com/spf13/cobra v1.9.1
 )
 
