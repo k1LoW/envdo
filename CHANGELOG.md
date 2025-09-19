@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.2.1](https://github.com/k1LoW/envdo/compare/v0.2.0...v0.2.1) - 2025-09-19
+- chore(deps): bump github.com/spf13/cobra from 1.9.1 to 1.10.1 in the dependencies group by @dependabot[bot] in https://github.com/k1LoW/envdo/pull/10
+- chore(deps): bump actions/setup-go from 5 to 6 in the dependencies group by @dependabot[bot] in https://github.com/k1LoW/envdo/pull/9
+
 ## [v0.2.0](https://github.com/k1LoW/envdo/compare/v0.1.0...v0.2.0) - 2025-08-14
 - fix: change profile-based .env handling by @k1LoW in https://github.com/k1LoW/envdo/pull/8
 
